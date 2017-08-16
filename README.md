@@ -25,7 +25,7 @@ x = sin(y)
 plot(x, y)
 ```
 
-## Interactive use with terminal (without no-GUI)
+## Interactive use with terminal (without GUI)
 
 ```bash
 docker run -it --rm -v $(pwd):/home/jovyan/work ymatsunaga/octave octave
