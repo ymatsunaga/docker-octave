@@ -1,13 +1,17 @@
-FROM jupyter/base-notebook
+FROM jupyter/datascience-notebook
 MAINTAINER Yasuhiro Matsunaga <ymatsunaga@riken.jp>
 
 USER root
 ENV DEBIAN_FRONTEND noninteractive
+ENV OMP_NUM_THREADS 8
+ENV OCTAVE_CLI_OPTIONS "--path /home/jovyan/mdtoolbox/mdtoolbox"
 
 RUN apt-get -y update \
  && apt-get -y install \
-      octave \
+      less \
+      gnuplot \
       libnetcdf-dev \
+      octave \
       liboctave-dev \
       git \
  && apt-get clean \
@@ -26,13 +30,8 @@ WORKDIR /home/jovyan/mdtoolbox
 
 RUN octave --no-gui --eval "make"
 
-WORKDIR /home/jovyan
-ENV OMP_NUM_THREADS 8
-COPY .octaverc /home/jovyan/
+RUN pip install octave_kernel \
+ && python -m octave_kernel.install
 
 WORKDIR /home/jovyan/work
-
-RUN pip install octave_kernel \
- && python -m octave_kernel.install \
- && conda install -y ipywidgets
 
