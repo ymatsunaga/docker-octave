@@ -4,7 +4,7 @@ Ocatve + Jupyter docker image ready for use with [MDToolbox](https://github.com/
 [MDToolbox](https://github.com/ymatsunaga/mdtoolbox) is a MATLAB/Octave toolbox for statistical analysis of molecular dynamics trajectories.
 
 This image is based on [jupyter/datascience-notebook](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook) 
-and [a Octave kernel for Jupyter](https://github.com/Calysto/octave_kernel).
+and [Octave kernel for Jupyter](https://github.com/Calysto/octave_kernel).
 
 # Usage
 
