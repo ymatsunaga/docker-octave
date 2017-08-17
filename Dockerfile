@@ -4,6 +4,8 @@ MAINTAINER Yasuhiro Matsunaga <ymatsunaga@riken.jp>
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV OMP_NUM_THREADS 8
+
+# path setting for octave_kernel in jupyter
 ENV OCTAVE_CLI_OPTIONS "--path /home/jovyan/mdtoolbox/mdtoolbox"
 
 RUN apt-get -y update \
@@ -29,6 +31,9 @@ RUN git clone https://github.com/ymatsunaga/mdtoolbox.git
 WORKDIR /home/jovyan/mdtoolbox
 
 RUN octave --no-gui --eval "make"
+
+# path setting for interactive octave use
+RUN echo addpath\(\'/home/jovyan/mdtoolbox/mdtoolbox\'\)\; >/home/jovyan/.octaverc
 
 RUN pip install octave_kernel \
  && python -m octave_kernel.install
