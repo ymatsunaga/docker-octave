@@ -40,6 +40,5 @@ docker run -it --rm -v $(pwd):/home/jovyan/work ymatsunaga/octave octave
 ## Execute an Octave script (batch run)
 
 ```bash
-docker run -it --rm -v $(pwd):/home/jovyan/work ymatsunaga/octave octave script.m
+docker run --rm -v $(pwd):/home/jovyan/work ymatsunaga/octave octave script.m
 ```
-
