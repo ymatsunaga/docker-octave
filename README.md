@@ -1,10 +1,14 @@
 # Docker image for MDToolbox
+
 Ocatve + Jupyter docker image ready for use with [MDToolbox](https://github.com/ymatsunaga/mdtoolbox).
 [MDToolbox](https://github.com/ymatsunaga/mdtoolbox) is a MATLAB/Octave toolbox for statistical analysis of molecular dynamics trajectories.
-This image is based on [jupyter/datascience-notebook](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook).
+
+This image is based on [jupyter/datascience-notebook](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook) 
+and [a Octave kernel for Jupyter](https://github.com/Calysto/octave_kernel).
 
 # Usage
-## Jupyter notebook via browser
+
+## Jupyter notebook
 
 Starts the Notebook server listening for HTTP connections on port 8888 with a randomly generated authentication token configured.
 
@@ -12,9 +16,11 @@ Starts the Notebook server listening for HTTP connections on port 8888 with a ra
 docker run --rm -p 8888:8888 -v $(pwd):/home/jovyan/work ymatsunaga/octave
 ```
 
-Then, take note of the authentication token included in the notebook startup log messages.
+Take note of the URL+authentication_token appeared in the notebook startup log messages.
 
-Create a notebook selecting "Octave" from [New] pulldown. 
+Pase them to your browser's address bar and access to the notebook.
+
+Create a notebook selecting "Octave" from [New] pulldown.
 
 In Mac OSX, you may get black graph when plotting (due to some trouble with png). This problem can be avoided by putting the following before calling `plot()`:
 
@@ -29,5 +35,11 @@ plot(x, y)
 
 ```bash
 docker run -it --rm -v $(pwd):/home/jovyan/work ymatsunaga/octave octave
+```
+
+## Execute an Octave script (batch run)
+
+```bash
+docker run -it --rm -v $(pwd):/home/jovyan/work ymatsunaga/octave octave script.m
 ```
 
