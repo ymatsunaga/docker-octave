@@ -5,6 +5,10 @@ USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV OMP_NUM_THREADS 8
 
+## MSMBuilder
+
+
+## MDToolbox https://github.com/ymatsunaga/mdtoolbox
 # path setting for octave_kernel in jupyter
 ENV OCTAVE_CLI_OPTIONS "--path /home/jovyan/mdtoolbox/mdtoolbox"
 
@@ -35,8 +39,10 @@ RUN octave --no-gui --eval "make"
 # path setting for interactive octave use
 RUN echo addpath\(\'/home/jovyan/mdtoolbox/mdtoolbox\'\)\; >/home/jovyan/.octaverc
 
-RUN pip install octave_kernel \
- && python -m octave_kernel.install
+RUN pip install --upgrade pip
+# RUN pip install octave_kernel \
+#  && python -m octave_kernel.install
+RUN pip install octave_kernel
 
 WORKDIR /home/jovyan/work
 
